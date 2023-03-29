@@ -1,12 +1,13 @@
 import Pokedex from 'pokedex-promise-v2';
-import { homeLoad } from './homeLoad';
+import { homeLoad, updatePokemonSprite} from './updateDom';
+import {game} from './game.js'
+
+
 const P = new Pokedex();
-const targetPokemonId = Math.floor(Math.random() * 151) + 1;
-const userGuess = 1;
 
 async function getPokemonSprite() {
     try {
-        const pokemon = await P.getResource([`api/v2/pokemon/${targetPokemonId}`]);
+        const pokemon = await P.getResource([`api/v2/pokemon/${game.targetPokeId}`]);
         const pokemonSpriteURL = pokemon[0].sprites.front_default;
         return pokemonSpriteURL;
     } catch (error) {
@@ -15,9 +16,13 @@ async function getPokemonSprite() {
 }
 
 async function init() {
+    game.targetPokeId = game.getRandomID();
     const pokemonSpriteURL = await getPokemonSprite();
     homeLoad(pokemonSpriteURL);
+
 }
 
 init();
+
+export {getPokemonSprite}
 
