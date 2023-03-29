@@ -1,9 +1,11 @@
 import { getPokemonSprite } from ".";
-import { updatePokemonSprite } from "./updateDom";
+import { updatePokemonSprite, updateGuesses, updateHint, clearInput } from "./updateDom";
 
 const game = {
     targetPokeId: null,
-    playerGuess: null,
+    playerGuess: 0,
+    numberGuessed: 0,
+    hasWon: false,
 
     getRandomID: function() {
         // generates random number to query api for pokemon with that ID
@@ -11,24 +13,32 @@ const game = {
         return randPokeId
     },
 
-    newRound: function() {
+    newRound: async function() {
         this.targetPokeId = this.getRandomID();
         this.playerGuess = null;
-        updatePokemonSprite();
+        const pokemonSpriteURL = await getPokemonSprite();
+        clearInput();
+        updatePokemonSprite(pokemonSpriteURL);
+        updateGuesses();
     },
 
     checkGuess: function() {    
+        updateGuesses();
         // checks guess against target, returns direction of next guess
         switch (true) {
             // correct
             case this.playerGuess == this.targetPokeId:
-                this.newRound();
+                updateHint("assets/dash.svg");
+                this.hasWon = true;
+                this.numberGuessed = 0;
                 break;
-            // lower
-            case this.playerGuess < this.targetPokeId:
             // higher
-                break;
             case this.playerGuess > this.targetPokeId:
+                updateHint("assets/redArrow.svg")
+                break;
+                // lower
+            case this.playerGuess < this.targetPokeId:
+                updateHint("assets/greenArrow.svg")
                 break;
         }
     },
