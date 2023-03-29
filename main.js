@@ -367,14 +367,14 @@ eval("/*\n * node-cache 5.1.2 ( 2020-07-01 )\n * https://github.com/node-cache/n
 
 /***/ }),
 
-/***/ "./src/homeLoad.js":
-/*!*************************!*\
-  !*** ./src/homeLoad.js ***!
-  \*************************/
+/***/ "./src/game.js":
+/*!*********************!*\
+  !*** ./src/game.js ***!
+  \*********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"homeLoad\": () => (/* binding */ homeLoad)\n/* harmony export */ });\nfunction homeLoad(pokemonSpriteURL) {\r\n        //dom stuff\r\n        const app = document.getElementById(\"app\");\r\n        const spriteContainer = document.createElement(\"img\");\r\n        spriteContainer.setAttribute(\"id\", \"pokemonSprite\");\r\n        spriteContainer.setAttribute(\"src\", pokemonSpriteURL);\r\n        app.appendChild(spriteContainer);\r\n        const userInputBox = document.createElement(\"input\");\r\n        userInputBox.setAttribute(\"maxlength\", 3);\r\n        app.appendChild(userInputBox);\r\n}\r\n\r\n\r\n\n\n//# sourceURL=webpack://pokegolf/./src/homeLoad.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"game\": () => (/* binding */ game)\n/* harmony export */ });\n/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! . */ \"./src/index.js\");\n/* harmony import */ var _updateDom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./updateDom */ \"./src/updateDom.js\");\n\r\n\r\n\r\nconst game = {\r\n    targetPokeId: null,\r\n    playerGuess: null,\r\n\r\n    getRandomID: function() {\r\n        // generates random number to query api for pokemon with that ID\r\n        const randPokeId = Math.floor(Math.random() * 151) + 1;\r\n        return randPokeId\r\n    },\r\n\r\n    newRound: function() {\r\n        this.targetPokeId = this.getRandomID();\r\n        this.playerGuess = null;\r\n        (0,_updateDom__WEBPACK_IMPORTED_MODULE_1__.updatePokemonSprite)();\r\n    },\r\n\r\n    checkGuess: function() {    \r\n        // checks guess against target, returns direction of next guess\r\n        switch (true) {\r\n            // correct\r\n            case this.playerGuess == this.targetPokeId:\r\n                this.newRound();\r\n                break;\r\n            // lower\r\n            case this.playerGuess < this.targetPokeId:\r\n            // higher\r\n                break;\r\n            case this.playerGuess > this.targetPokeId:\r\n                break;\r\n        }\r\n    },\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\n\n//# sourceURL=webpack://pokegolf/./src/game.js?");
 
 /***/ }),
 
@@ -385,7 +385,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var pokedex_promise_v2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! pokedex-promise-v2 */ \"./node_modules/pokedex-promise-v2/dist/src/index.js\");\n/* harmony import */ var _homeLoad__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./homeLoad */ \"./src/homeLoad.js\");\n\r\n\r\nconst P = new pokedex_promise_v2__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\r\nconst targetPokemonId = Math.floor(Math.random() * 151) + 1;\r\nconst userGuess = 1;\r\n\r\nasync function getPokemonSprite() {\r\n    try {\r\n        const pokemon = await P.getResource([`api/v2/pokemon/${targetPokemonId}`]);\r\n        const pokemonSpriteURL = pokemon[0].sprites.front_default;\r\n        return pokemonSpriteURL;\r\n    } catch (error) {\r\n        throw error\r\n    }\r\n}\r\n\r\nasync function init() {\r\n    const pokemonSpriteURL = await getPokemonSprite();\r\n    (0,_homeLoad__WEBPACK_IMPORTED_MODULE_1__.homeLoad)(pokemonSpriteURL);\r\n}\r\n\r\ninit();\r\n\r\n\n\n//# sourceURL=webpack://pokegolf/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"getPokemonSprite\": () => (/* binding */ getPokemonSprite)\n/* harmony export */ });\n/* harmony import */ var pokedex_promise_v2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! pokedex-promise-v2 */ \"./node_modules/pokedex-promise-v2/dist/src/index.js\");\n/* harmony import */ var _updateDom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./updateDom */ \"./src/updateDom.js\");\n/* harmony import */ var _game_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./game.js */ \"./src/game.js\");\n\r\n\r\n\r\n\r\n\r\nconst P = new pokedex_promise_v2__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\r\n\r\nasync function getPokemonSprite() {\r\n    try {\r\n        const pokemon = await P.getResource([`api/v2/pokemon/${_game_js__WEBPACK_IMPORTED_MODULE_2__.game.targetPokeId}`]);\r\n        const pokemonSpriteURL = pokemon[0].sprites.front_default;\r\n        return pokemonSpriteURL;\r\n    } catch (error) {\r\n        throw error\r\n    }\r\n}\r\n\r\nasync function init() {\r\n    _game_js__WEBPACK_IMPORTED_MODULE_2__.game.targetPokeId = _game_js__WEBPACK_IMPORTED_MODULE_2__.game.getRandomID();\r\n    const pokemonSpriteURL = await getPokemonSprite();\r\n    (0,_updateDom__WEBPACK_IMPORTED_MODULE_1__.homeLoad)(pokemonSpriteURL);\r\n\r\n}\r\n\r\ninit();\r\n\r\n\r\n\r\n\n\n//# sourceURL=webpack://pokegolf/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/updateDom.js":
+/*!**************************!*\
+  !*** ./src/updateDom.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"homeLoad\": () => (/* binding */ homeLoad),\n/* harmony export */   \"updatePokemonSprite\": () => (/* binding */ updatePokemonSprite)\n/* harmony export */ });\nconst app = document.getElementById(\"app\");\r\nconst spriteContainer = document.createElement(\"img\");\r\nfunction homeLoad(pokemonSpriteURL) {\r\n        // initialize dom stuff\r\n\r\n        spriteContainer.setAttribute(\"id\", \"pokemonSprite\");\r\n        updatePokemonSprite(pokemonSpriteURL);\r\n        app.appendChild(spriteContainer);\r\n        const userInputBox = document.createElement(\"input\");\r\n        userInputBox.setAttribute(\"maxlength\", 3);\r\n        app.appendChild(userInputBox);\r\n}\r\n\r\nfunction updatePokemonSprite(spriteURL) {\r\n        spriteContainer.setAttribute(\"src\", spriteURL);\r\n}\r\n\r\n\r\n\n\n//# sourceURL=webpack://pokegolf/./src/updateDom.js?");
 
 /***/ }),
 
@@ -557,7 +568,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
 /******/ 	var __webpack_exports__ = __webpack_require__("./src/index.js");
 /******/ 	
 /******/ })()
