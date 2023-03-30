@@ -6,6 +6,9 @@ const uiContainer = document.getElementById("interface");
 const guessHolder = document.getElementById("guessHolder");
 const userInputBox = document.createElement("input");
 const hint = document.createElement("img");
+const scorecard = document.createElement("div");
+scorecard.setAttribute("id", "scorecard");
+
 
 function homeLoad(pokemonSpriteURL) {
         // initialize dom stuff

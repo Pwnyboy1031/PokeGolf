@@ -20,6 +20,7 @@ const game = {
         clearInput();
         updatePokemonSprite(pokemonSpriteURL);
         updateGuesses();
+        updateHint("assets/dash.svg")
     },
 
     checkGuess: function() {    
@@ -28,7 +29,7 @@ const game = {
         switch (true) {
             // correct
             case this.playerGuess == this.targetPokeId:
-                updateHint("assets/dash.svg");
+                updateHint("assets/pokeball.png");
                 this.hasWon = true;
                 this.numberGuessed = 0;
                 break;
