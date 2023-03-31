@@ -1,4 +1,4 @@
-import { getPokemonSprite } from ".";
+import { getPokemonSprite, gameWon} from ".";
 import { updatePokemonSprite, updateGuesses, updateHint, clearInput } from "./updateDom";
 
 const game = {
@@ -15,12 +15,14 @@ const game = {
 
     newRound: async function() {
         this.targetPokeId = this.getRandomID();
-        this.playerGuess = null;
+        console.log(this.targetPokeId);
+        this.playerGuess = 0;
         const pokemonSpriteURL = await getPokemonSprite();
         clearInput();
         updatePokemonSprite(pokemonSpriteURL);
         updateGuesses();
         updateHint("assets/dash.svg")
+        this.hasWon = false;
     },
 
     checkGuess: function() {    

@@ -4,6 +4,7 @@ import {game} from './game.js'
 
 
 const P = new Pokedex();
+let gameWon = false;
 
 async function getPokemonSprite() {
     try {
@@ -24,18 +25,20 @@ async function init() {
 
 
 init();
-document.addEventListener("keyup", (e) => {
-    if (e.key === "Enter" && game.hasWon == false) {
-            game.playerGuess = userInputBox.value;
-            game.numberGuessed += 1;
-            game.checkGuess();
-            console.log(game.targetPokeId);
-    } else if (e.key === "Enter" && game.hasWon == true) {
-        game.newRound();
-    }
-})
+    document.addEventListener("keyup", (e) => {
+        if (e.key === "Enter" && game.hasWon == false) {
+                game.playerGuess = userInputBox.value;
+                game.numberGuessed += 1;
+                game.checkGuess();
+                console.log(game.targetPokeId);
+        } else if (e.key === "Enter" && game.hasWon == true) {
+            game.newRound();
+        }
+    })
 
 
 
-export {getPokemonSprite}
+
+
+export {getPokemonSprite, gameWon}
 
