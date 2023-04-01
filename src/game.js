@@ -1,10 +1,11 @@
-import { getPokemonSprite, gameWon} from ".";
-import { updatePokemonSprite, updateGuesses, updateHint, clearInput } from "./updateDom";
+import { getPokemonSprite} from ".";
+import { updatePokemonSprite, updateGuesses, updateHint, clearInput, updateScoreboard} from "./updateDom";
 
 const game = {
     targetPokeId: null,
     playerGuess: 0,
     numberGuessed: 0,
+    scoreboard: [],
     hasWon: false,
 
     getRandomID: function() {
@@ -31,6 +32,8 @@ const game = {
         switch (true) {
             // correct
             case this.playerGuess == this.targetPokeId:
+                this.scoreboard.push(this.numberGuessed);
+                updateScoreboard();
                 updateHint("assets/pokeball.png");
                 this.hasWon = true;
                 this.numberGuessed = 0;

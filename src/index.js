@@ -4,7 +4,6 @@ import {game} from './game.js'
 
 
 const P = new Pokedex();
-let gameWon = false;
 
 async function getPokemonSprite() {
     try {
@@ -40,5 +39,5 @@ init();
 
 
 
-export {getPokemonSprite, gameWon}
+export {getPokemonSprite}
 

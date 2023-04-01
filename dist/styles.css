@@ -57,7 +57,6 @@ body {
 }
 
 
-
 @media screen and (max-width: 428px) {
     #app {
         background-image: url(assets/mobileGrass.png);
@@ -79,13 +78,71 @@ body {
     #interface {
         gap: 1px ;
         width: 90vw;
+        justify-content: space-between;
     }
 
     #interface > img {
         height: 15vh;
+        width: 30vw;
+    }
+
+    #hint {
+        width: 35vw;
     }
 
     #guessHolder {
         font-size: 1.5em;
+        width: 33vw;
+    }
+
+    #scorecard {
+        height: 25vh;
+        width: 80vw;
+        margin-top: 20vh;
+        display: grid;
+        border: 2px solid black;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-areas: 
+        "title title title title title title title title title title"
+        "hole1 hole2 hole3 hole4 hole5 hole6 hole7 hole8 hole9 totHoles"
+        "score1 score2 score3 score4 score5 score6 score7 score8 score9 totScore";
+        background-color: white;
+    }
+
+    #scoreTitle {
+        background-color: darkred;
+        grid-area: title;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2em;
+        border-bottom: 1px solid black;
+    }
+    .hole {
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2em;
+    }
+
+    #hl1 {
+        grid-area: hole1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #hl2 {
+        grid-area: hole2;
+    }
+
+    .score {
+        border: 1px solid black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2em;
     }
 }
