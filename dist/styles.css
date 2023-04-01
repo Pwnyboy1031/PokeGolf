@@ -98,7 +98,7 @@ body {
     #scorecard {
         height: 25vh;
         width: 80vw;
-        margin-top: 20vh;
+        margin-top: 5vh;
         display: grid;
         border: 2px solid black;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
