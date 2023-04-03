@@ -56,6 +56,55 @@ body {
     width: 200px;
 }
 
+#scorecard {
+    width: 50vw;
+    margin-top: 5vh;
+    display: grid;
+    border: 2px solid black;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: 
+    "title title title title title title title title title title"
+    "hole1 hole2 hole3 hole4 hole5 hole6 hole7 hole8 hole9 totHoles"
+    "score1 score2 score3 score4 score5 score6 score7 score8 score9 totScore";
+    background-color: white;
+}
+
+#scoreTitle {
+    background-color: darkred;
+    grid-area: title;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1em;
+    border-bottom: 1px solid black;
+}
+.hole {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1em;
+}
+
+#hl1 {
+    grid-area: hole1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#hl2 {
+    grid-area: hole2;
+}
+
+.score {
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1em;
+}
 
 @media screen and (max-width: 428px) {
     #app {
@@ -65,7 +114,6 @@ body {
     }
     #app > h1 {
         font-size: 1em;
-        margin-top: 15vh;
     }
     #app > div {
         font-size: 5vw;
