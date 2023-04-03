@@ -33,6 +33,10 @@ init();
         } else if (e.key === "Enter" && game.hasWon == true) {
             game.newRound();
         }
+
+        document.addEventListener("resize", (e) => {
+            
+        })
     })
 
 
