@@ -116,8 +116,9 @@ body {
 @media screen and (max-width: 428px) {
     body {
         background-image: url(assets/mobileGrass.png);
+        background-size: 100vh;
     }
-    
+
     #app {
         width: auto;
         -webkit-text-stroke: 1px black;
