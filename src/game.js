@@ -10,7 +10,7 @@ const game = {
 
     getRandomID: function() {
         // generates random number to query api for pokemon with that ID
-        const randPokeId = Math.floor(Math.random() * 151) + 1;
+        const randPokeId = Math.floor(Math.random() * 1020) + 1;
         return randPokeId
     },
 
