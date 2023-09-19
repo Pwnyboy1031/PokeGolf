@@ -116,7 +116,7 @@ body {
 @media screen and (max-width: 428px) {
     body {
         background-image: url(assets/mobileGrass.png);
-        background-size: 100vh;
+        background-size: 100dvh;
     }
 
     #app {
