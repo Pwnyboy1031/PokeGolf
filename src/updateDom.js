@@ -18,8 +18,7 @@ function homeLoad(pokemonSpriteURL) {
         updatePokemonSprite(pokemonSpriteURL);
         app.appendChild(spriteContainer);
         uiContainer.appendChild(spriteContainer);
-        hint.setAttribute("height", 200)
-        hint.setAttribute("src", "assets/dash.svg")
+        hint.setAttribute("src", "assets/dash.svg");
         uiContainer.appendChild(hint)
         guessHolder.innerHTML = `<br>${game.numberGuessed}<br>Guesses`
 }
