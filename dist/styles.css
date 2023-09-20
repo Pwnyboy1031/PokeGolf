@@ -2,7 +2,7 @@
 
 body {
     margin: 0;
-    overflow: scroll;
+    overflow-x: scroll;
     background-image: url(assets/grass.png);
     background-position: center center;
     background-repeat: no-repeat;
