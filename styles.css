@@ -143,7 +143,7 @@ body {
 
     #interface > img {
         height: auto;
-        width: auto;
+        width: 33vw;
         min-width: 96px;
         min-height: 96px;
     }
