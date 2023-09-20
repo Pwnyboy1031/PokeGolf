@@ -114,7 +114,7 @@ body {
     }
 }
 
-@media screen and (max-width: 428px) and (orientation: portrait){
+@media screen and (max-width: 428px) {
     body {
         background-image: url(assets/mobileGrass.png);
     }
